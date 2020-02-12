@@ -1,4 +1,4 @@
-# UnderlinedTextField
+# Underlined Text Field
 
 TextField with a solid line underneath that changes color upon gaining and losing focus. Line thickness and colors are configurable.
 
