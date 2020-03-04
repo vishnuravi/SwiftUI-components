@@ -8,13 +8,12 @@
 
 import SwiftUI
 
-struct RefreshableScrollView : UIViewRepresentable {
-    
+struct RefreshableScrollView: UIViewRepresentable {
     var width: CGFloat, height: CGFloat
-    let modelData = DataModel(modelData: [Model(title: "Episode 1"), Model(title: "Episode 2"), Model(title: "Episode 3")])
+    let episodes = DataModel(modelData: [Model(title: "Episode 1"), Model(title: "Episode 2"), Model(title: "Episode 3")])
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(self, model: modelData)
+        Coordinator(self, model: episodes)
     }
     
     func makeUIView(context: Context) -> UIScrollView {
@@ -22,7 +21,7 @@ struct RefreshableScrollView : UIViewRepresentable {
         control.refreshControl = UIRefreshControl()
         control.refreshControl?.addTarget(context.coordinator, action: #selector(Coordinator.handleRefreshControl), for: .valueChanged)
         
-        let childView = UIHostingController(rootView: CardList(model: modelData))
+        let childView = UIHostingController(rootView: CardList(model: episodes))
         childView.view.frame = CGRect(x: 0, y: 0, width: width, height: height)
         
         control.addSubview(childView.view)
